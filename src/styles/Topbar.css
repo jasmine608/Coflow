@@ -1,0 +1,173 @@
+/* ============================================================
+   Topbar.css — 顶部导航栏样式
+   包含：Logo、导航按钮、搜索框、通知/头像按钮
+   ============================================================ */
+
+/* 顶栏容器：固定在页面顶部，毛玻璃效果 */
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topbar-h);
+  background: rgba(250, 248, 245, 0.85);
+  /* 毛玻璃背景模糊 */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(213, 207, 199, 0.6);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  z-index: 100;
+  /* 鼠标靠近顶部时的滑入动画 */
+  transition: transform 0.3s ease;
+}
+
+/* 顶栏收起（鼠标离开顶部区域时隐藏）*/
+.topbar.hidden {
+  transform: translateY(-100%);
+}
+
+/* Logo 区域 */
+.topbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--primary-700);
+  margin-right: 24px;
+  user-select: none;
+}
+.topbar-logo svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* 页面导航按钮组 */
+.topbar-nav {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.topbar-nav button {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+.topbar-nav button:hover {
+  color: var(--text-primary);
+  background: var(--bg-deep);
+}
+/* 当前激活页面的导航按钮高亮 */
+.topbar-nav button.active {
+  color: var(--primary-700);
+  background: rgba(165, 181, 197, 0.2);
+  box-shadow: 0 0 12px rgba(165, 181, 197, 0.15);
+}
+
+/* 搜索框容器 */
+.topbar-search {
+  position: relative;
+  margin-left: auto;
+}
+.topbar-search input {
+  background: var(--bg-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 6px 12px 6px 32px;
+  width: 200px;
+  transition: all 0.15s ease;
+  outline: none;
+}
+/* 聚焦时展开搜索框 */
+.topbar-search input:focus {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 16px rgba(165, 181, 197, 0.25);
+  width: 260px;
+}
+.topbar-search input::placeholder {
+  color: var(--text-weak);
+}
+/* 搜索图标绝对定位在输入框左侧 */
+.topbar-search svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  color: var(--text-weak);
+}
+
+/* 右侧图标按钮组（通知、侧栏切换）*/
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+}
+.topbar-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  position: relative;
+}
+.topbar-icon-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-deep);
+}
+.topbar-icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+/* 通知红点徽标 */
+.topbar-icon-btn .badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--morandi-pink);
+  box-shadow: 0 0 6px var(--morandi-pink);
+}
+
+/* 用户头像 */
+.topbar-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--primary-600), var(--primary-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease;
+}
+.topbar-avatar:hover {
+  box-shadow: 0 0 12px rgba(143, 160, 176, 0.3);
+}
